@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerDataService", "CustomerDataService\CustomerDataService.csproj", "{16D6821A-BB2A-47E1-986A-EE3052F33BA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AromaCareGlow.Commerce.CustomerData.Rest", "CustomerDataService\AromaCareGlow.Commerce.CustomerData.Rest.csproj", "{16D6821A-BB2A-47E1-986A-EE3052F33BA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AromaCareGlow.Commerce.CustomerData.Domain", "AromaCareGlow.Commerce.CustomerData.Domain\AromaCareGlow.Commerce.CustomerData.Domain.csproj", "{1BA77DB8-1C17-46AB-AA21-951CFD141C0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AromaCareGlow.Commerce.CustomerData.Infrastructure", "AromaCareGlow.Commerce.CustomerData.Infrastructure\AromaCareGlow.Commerce.CustomerData.Infrastructure.csproj", "{FB767978-3FD2-44C4-93AE-8C552A5C453D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AromaCareGlow.Commerce.CustomerData.Model", "AromaCareGlow.Commerce.CustomerData.Model\AromaCareGlow.Commerce.CustomerData.Model.csproj", "{F145C85F-088E-4978-B900-B2B53718AABA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{16D6821A-BB2A-47E1-986A-EE3052F33BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16D6821A-BB2A-47E1-986A-EE3052F33BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16D6821A-BB2A-47E1-986A-EE3052F33BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BA77DB8-1C17-46AB-AA21-951CFD141C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BA77DB8-1C17-46AB-AA21-951CFD141C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BA77DB8-1C17-46AB-AA21-951CFD141C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BA77DB8-1C17-46AB-AA21-951CFD141C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB767978-3FD2-44C4-93AE-8C552A5C453D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB767978-3FD2-44C4-93AE-8C552A5C453D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB767978-3FD2-44C4-93AE-8C552A5C453D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB767978-3FD2-44C4-93AE-8C552A5C453D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F145C85F-088E-4978-B900-B2B53718AABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F145C85F-088E-4978-B900-B2B53718AABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F145C85F-088E-4978-B900-B2B53718AABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F145C85F-088E-4978-B900-B2B53718AABA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
