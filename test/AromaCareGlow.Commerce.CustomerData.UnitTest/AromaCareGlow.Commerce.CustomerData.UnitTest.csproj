@@ -17,4 +17,12 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AromaCareGlow.Commerce.CustomerData.Rest\AromaCareGlow.Commerce.CustomerData.Rest.csproj" />
+  </ItemGroup>
+
 </Project>
