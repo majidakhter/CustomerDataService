@@ -12,7 +12,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Model.Map
         protected override void InternalMap(EntityTypeBuilder<CustomerPassword> builder)
         {
             builder
-                  .ToTable("CustomerPassword", "CustomerPasswordInfo");
+                  .ToTable("CustomerPassword");
             builder
                 .HasKey(x => x.Id)
                 .HasName("PK_CustomerPassword");

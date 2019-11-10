@@ -39,7 +39,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest
 
             // Add the DbContextOptions:
             var dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("ModularEfCore.Migrations"))
+                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                 .Options;
 
             services.AddSingleton(dbContextOptions);

@@ -17,12 +17,14 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
         private ICustomerRepository _repository;
         private readonly ILogger _logger;
         private readonly IConfiguration _configuration;
+
         public CustomerController(ICustomerRepository repository, ILogger logger, IConfiguration configuration)
         {
             _repository = repository;
             _logger = logger;
             _configuration = configuration;
         }
+
         [HttpPost("Save")]
         public async Task<IActionResult> SaveCustomerPassword([FromBody]CustomerPassword custPassword)
         {
@@ -38,7 +40,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex);
             }
         }
-        [HttpGet("{emailId}")]
+        [HttpGet("GetCustomerByEmail/{emailId}")]
         public async Task<IActionResult> GetCustomerByEmail(string emailId)
         {
             try
@@ -53,7 +55,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex);
             }
         }
-        [HttpGet("{registeredRoleName}")]
+        [HttpGet("GetCustomerRoleBySystemName/{registeredRoleName}")]
         public async Task<IActionResult> GetCustomerRoleBySystemName(string registeredRoleName)
         {
             try
@@ -68,7 +70,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex);
             }
         }
-        [HttpGet("{username}")]
+        [HttpGet("GetCustomerByUsername/{username}")]
         public async Task<IActionResult> GetCustomerByUsername(string username)
         {
             try
@@ -83,7 +85,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex);
             }
         }
-        [HttpGet("{customerId}")]
+        [HttpGet("GetCurrentPassword/{customerId}")]
         public async Task<IActionResult> GetCurrentPassword(int customerId)
         {
             try
