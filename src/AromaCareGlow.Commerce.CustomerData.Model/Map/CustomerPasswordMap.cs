@@ -25,17 +25,18 @@ namespace AromaCareGlow.Commerce.CustomerData.Model.Map
                 .Property(x => x.CustomerId)
                 .HasColumnName("CustomerId");
             builder
-              .Property(x => x.Password)
-              .HasColumnName("Password");
+                .Property(x => x.Password)
+                .HasColumnName("Password");
             builder
-            .Property(x => x.PasswordFormatId)
-            .HasColumnName("PasswordFormatId");
+                .Property(x => x.PasswordFormatId)
+                .HasColumnName("PasswordFormatId");
             builder
-           .Property(x => x.PasswordSalt)
-           .HasColumnName("PasswordSalt");
+                .Property(x => x.PasswordSalt)
+                .HasColumnName("PasswordSalt");
             builder
-          .Property(x => x.CreatedOnUtc)
-          .HasColumnName("CreatedOnUtc");
+                .Property(x => x.CreatedOnUtc)
+                .HasColumnName("CreatedOnUtc");
+           
         }
     }
 }

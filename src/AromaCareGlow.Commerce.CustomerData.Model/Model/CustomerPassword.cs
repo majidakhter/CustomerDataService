@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AromaCareGlow.Commerce.CustomerData.Model
@@ -39,6 +40,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Model
         /// <summary>
         /// Gets or sets the password format
         /// </summary>
+        [NotMapped]
         public PasswordFormat PasswordFormat
         {
             get => (PasswordFormat)PasswordFormatId;
