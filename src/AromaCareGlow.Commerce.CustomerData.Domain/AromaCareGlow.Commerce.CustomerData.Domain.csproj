@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AromaCareGlow.Commerce.CustomerData.Infrastructure\AromaCareGlow.Commerce.CustomerData.Infrastructure.csproj" />
+    <ProjectReference Include="..\AromaCareGlow.Commerce.CustomerData.Model\AromaCareGlow.Commerce.CustomerData.Model.csproj" />
+  </ItemGroup>
+
 </Project>
