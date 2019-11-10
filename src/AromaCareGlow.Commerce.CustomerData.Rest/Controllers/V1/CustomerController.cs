@@ -101,8 +101,8 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
             }
         }
 
-        [HttpPut("Update")]
-        public async Task<IActionResult> UpdateCustomer([FromBody]Customer customer)
+        [HttpPut("UpdateCustomerPassword")]
+        public async Task<IActionResult> UpdateCustomerPassword([FromBody]CustomerPassword customer)
         {
             try
             {

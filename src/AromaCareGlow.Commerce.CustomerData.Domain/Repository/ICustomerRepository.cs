@@ -17,6 +17,6 @@ namespace AromaCareGlow.Commerce.CustomerData.Domain.Repository
         Task<CustomerPassword> GetCurrentPassword(int customerId);
        // Task<IEnumerable<Customer>> GetAll();
         Task<bool> Insert(CustomerPassword entity);
-        bool Update(Customer entityToUpdate);
+        bool Update(CustomerPassword entityToUpdate);
     }
 }

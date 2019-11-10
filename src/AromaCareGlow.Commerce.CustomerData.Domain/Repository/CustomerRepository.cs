@@ -92,7 +92,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Domain.Repository
             }
         }
 
-        public bool  Update(Customer entity)
+        public bool  Update(CustomerPassword entity)
         {
             if (entity == null)
             {
@@ -100,7 +100,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Domain.Repository
             }
             using (var context = dbContextFactory.Create())
             {
-                context.DbSet<Customer>().Update(entity);
+                context.DbSet<CustomerPassword>().Update(entity);
                 context.SaveChanges();
                 return true;
             }
