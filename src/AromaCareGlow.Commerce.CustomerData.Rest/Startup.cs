@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AromaCareGlow.Commerce.CustomerData.Rest.Database;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Logging;
-using AromaCareGlow.Commerce.CustomerData.Rest.V1;
+using AromaCareGlow.Commerce.CustomerData.Rest.Controllers.V1;
 
 namespace AromaCareGlow.Commerce.CustomerData.Rest
 {
@@ -31,7 +31,17 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest
             services.AddSingleton(Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDependencyServices();
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
             services.AddSingleton<IEntityTypeMap, CustomerMap>();
             services.AddSingleton<IEntityTypeMap, CustomerPasswordMap>();
             // Register the Seed:
@@ -62,7 +72,11 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest
            
             var serviceProvider = services.BuildServiceProvider();
             var logger = serviceProvider.GetService<ILogger<CustomerController>>();
+            var logger1 = serviceProvider.GetService<ILogger<CustomerRoleController>>();
+            var logger2 = serviceProvider.GetService<ILogger<CustomerPasswordController>>();
             services.AddSingleton(typeof(ILogger), logger);
+            services.AddSingleton(typeof(ILogger), logger1);
+            services.AddSingleton(typeof(ILogger), logger2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +94,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCors("AllowAllOrigins");
             app.UseSwagger();
             app.UseSwaggerUI(
                options =>

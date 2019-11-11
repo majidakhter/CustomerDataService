@@ -1,13 +1,13 @@
 using System;
 using System.Threading.Tasks;
 using Xunit;
-using AromaCareGlow.Commerce.CustomerData.Rest.V1;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Moq;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using AromaCareGlow.Commerce.CustomerData.Domain.Repository;
+using AromaCareGlow.Commerce.CustomerData.Rest.Controllers.V1;
 
 namespace AromaCareGlow.Commerce.CustomerData.UnitTest.Controller.V1
 {

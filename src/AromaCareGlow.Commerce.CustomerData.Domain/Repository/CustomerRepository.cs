@@ -27,16 +27,6 @@ namespace AromaCareGlow.Commerce.CustomerData.Domain.Repository
                 return customers;
             }
         }
-        public async Task<Customer> GetCustomerRoleBySystemName(string registeredRoleName)
-        {
-            using (var context = dbContextFactory.Create())
-            {
-                var customers = await context.DbSet<Customer>()
-                     .FirstOrDefaultAsync(x => x.SystemName == registeredRoleName);
-
-                return customers;
-            }
-        }
         public async Task<Customer> GetCustomerByUsername(string username)
         {
             using (var context = dbContextFactory.Create())
@@ -62,12 +52,42 @@ namespace AromaCareGlow.Commerce.CustomerData.Domain.Repository
                 return customer;
             }
         }
-        public async Task<CustomerPassword> GetCurrentPassword(int customerId)
+      
+        public async Task<bool> InsertCustomer(Customer entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            
+            using (var context = dbContextFactory.Create())
+            {
+                await context.DbSet<Customer>().AddAsync(entity);
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool UpdateCustomer(Customer entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            using (var context = dbContextFactory.Create())
+            {
+                context.DbSet<Customer>().Update(entity);
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public async Task<Customer> GetCustomerById(int customerId)
         {
             using (var context = dbContextFactory.Create())
             {
-                var customer = await context.DbSet<CustomerPassword>()
-                    .FirstOrDefaultAsync(x => x.CustomerId == customerId);
+                var customer = await context.DbSet<Customer>()
+                    .FirstOrDefaultAsync(x => x.Id == customerId);
 
                 if (customer == null)
                 {
@@ -77,35 +97,50 @@ namespace AromaCareGlow.Commerce.CustomerData.Domain.Repository
                 return customer;
             }
         }
-        public async Task<bool> Insert(CustomerPassword entity)
+
+        public async Task<Customer> GetCustomerByGuid(Guid customerId)
+        {
+            using (var context = dbContextFactory.Create())
+            {
+                var customer = await context.DbSet<Customer>()
+                    .FirstOrDefaultAsync(x => x.CustomerGuid == customerId);
+
+                if (customer == null)
+                {
+                    return null;
+                }
+
+                return customer;
+            }
+        }
+
+        public Task<List<Customer>> GetCustomerByIds(int[] customerIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteCustomer(Customer entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
-            
             using (var context = dbContextFactory.Create())
             {
-                await context.DbSet<CustomerPassword>().AddAsync(entity);
+                context.DbSet<Customer>().Remove(entity);
                 context.SaveChanges();
                 return true;
             }
         }
 
-        public bool  Update(CustomerPassword entity)
+        public bool DeleteGuestCustomer(DateTime? createdFromUtc, DateTime? createdToUtc, bool onlyWithoutShoppingCart)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            using (var context = dbContextFactory.Create())
-            {
-                context.DbSet<CustomerPassword>().Update(entity);
-                context.SaveChanges();
-                return true;
-            }
+            throw new NotImplementedException();
         }
 
-       
+        public Task<bool> InsertGuestCustomer(Customer entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

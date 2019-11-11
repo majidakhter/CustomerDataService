@@ -12,11 +12,14 @@ namespace AromaCareGlow.Commerce.CustomerData.Domain.Repository
 
         Task<Customer> GetByIDAsync(int id);
         Task<Customer> GetCustomerByEmail(string emailId);
-        Task<Customer> GetCustomerRoleBySystemName(string registeredRoleName);
         Task<Customer>  GetCustomerByUsername(string username);
-        Task<CustomerPassword> GetCurrentPassword(int customerId);
-       // Task<IEnumerable<Customer>> GetAll();
-        Task<bool> Insert(CustomerPassword entity);
-        bool Update(CustomerPassword entityToUpdate);
+        Task<Customer> GetCustomerById(int customerId);
+        Task<Customer> GetCustomerByGuid(Guid customerId);
+        Task<List<Customer>> GetCustomerByIds(int[] customerIds);
+        Task<bool> InsertCustomer(Customer entity);
+        bool UpdateCustomer(Customer entityToUpdate);
+        bool DeleteCustomer(Customer entity);
+        bool DeleteGuestCustomer(DateTime? createdFromUtc, DateTime? createdToUtc, bool onlyWithoutShoppingCart);
+        Task<bool> InsertGuestCustomer(Customer entity);
     }
 }

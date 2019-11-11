@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
+namespace AromaCareGlow.Commerce.CustomerData.Rest.Controllers.V1
 {
     [ApiVersion("1.0")]
     [Route("v{api-version:apiVersion}/[controller]")]
@@ -24,22 +24,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
             _logger = logger;
             _configuration = configuration;
         }
-
-        [HttpPost("Save")]
-        public async Task<IActionResult> SaveCustomerPassword([FromBody]CustomerPassword custPassword)
-        {
-            try
-            {
-                _logger.LogInformation($"SaveCustomerPassword : { Newtonsoft.Json.JsonConvert.SerializeObject(custPassword)}");
-                await _repository.Insert(custPassword);
-                return Ok(custPassword);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
-            }
-        }
+       
         [HttpGet("GetCustomerByEmail/{emailId}")]
         public async Task<IActionResult> GetCustomerByEmail(string emailId)
         {
@@ -55,21 +40,7 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex);
             }
         }
-        [HttpGet("GetCustomerRoleBySystemName/{registeredRoleName}")]
-        public async Task<IActionResult> GetCustomerRoleBySystemName(string registeredRoleName)
-        {
-            try
-            {
-                _logger.LogInformation($"GetCustomerRoleBySystemName : { registeredRoleName}");
-                var customer = await _repository.GetCustomerRoleBySystemName(registeredRoleName);
-                return Ok(customer);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
-            }
-        }
+        
         [HttpGet("GetCustomerByUsername/{username}")]
         public async Task<IActionResult> GetCustomerByUsername(string username)
         {
@@ -85,13 +56,14 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex);
             }
         }
-        [HttpGet("GetCurrentPassword/{customerId}")]
-        public async Task<IActionResult> GetCurrentPassword(int customerId)
+       
+        [HttpGet("GetCustomerById/{customerId}")]
+        public async Task<IActionResult> GetCustomerById(int customerId)
         {
             try
             {
                 _logger.LogInformation($"GetCurrentPassword : { customerId}");
-                var customer = await _repository.GetCurrentPassword(customerId);
+                var customer = await _repository.GetCustomerById(customerId);
                 return Ok(customer);
             }
             catch (Exception ex)
@@ -101,14 +73,14 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
             }
         }
 
-        [HttpPut("UpdateCustomerPassword")]
-        public async Task<IActionResult> UpdateCustomerPassword([FromBody]CustomerPassword customer)
+        [HttpGet("GetCustomerByGuid/{customerId}")]
+        public async Task<IActionResult> GetCustomerByGuid(Guid customerId)
         {
             try
             {
-                _logger.LogInformation($"UpdateCustomer : {  Newtonsoft.Json.JsonConvert.SerializeObject(customer)}");
-                var customers = _repository.Update(customer);
-                return Ok(customers);
+                _logger.LogInformation($"GetCurrentPassword : { customerId}");
+                var customer = await _repository.GetCustomerByGuid(customerId);
+                return Ok(customer);
             }
             catch (Exception ex)
             {
@@ -116,5 +88,99 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest.V1
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex);
             }
         }
+
+        [HttpGet("GetCustomerByIds/{customerId}")]
+        public async Task<IActionResult> GetCustomerByIds(int[] customerIds)
+        {
+            try
+            {
+                _logger.LogInformation($"GetCurrentPassword : { customerIds}");
+                var customer = await _repository.GetCustomerByIds(customerIds);
+                return Ok(customer);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpPost("Save")]
+        public async Task<IActionResult> SaveCustomer([FromBody]Customer custPassword)
+        {
+            try
+            {
+                _logger.LogInformation($"SaveCustomerPassword : { Newtonsoft.Json.JsonConvert.SerializeObject(custPassword)}");
+                 await _repository.InsertCustomer(custPassword);
+                return Ok(custPassword);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpPut("UpdateCustomer")]
+        public async Task<IActionResult> UpdateCustomer([FromBody]Customer custPassword)
+        {
+            try
+            {
+                _logger.LogInformation($"SaveCustomerPassword : { Newtonsoft.Json.JsonConvert.SerializeObject(custPassword)}");
+                 _repository.UpdateCustomer(custPassword);
+                return Ok(custPassword);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+        //[HttpPost("SaveGuestCustomer")]
+        //public  Task SaveGuestCustomer()
+        //{
+        //    try
+        //    {
+        //        _logger.LogInformation($"SaveCustomerPassword");
+        //         _repository.InsertGuestCustomer();
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, ex.Message);
+        //        return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+        //    }
+        //}
+        //[HttpDelete("DeleteCustomer")]
+        //public  Task<IActionResult> DeleteCustomer(Customer customer)
+        //{
+        //    try
+        //    {
+        //        _logger.LogInformation($"SaveCustomerPassword : { Newtonsoft.Json.JsonConvert.SerializeObject(customer)}");
+        //         _repository.DeleteCustomer(customer);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, ex.Message);
+        //        return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+        //    }
+        //}
+
+        //[HttpDelete("DeleteGuestCustomer")]
+        //public async Task<IActionResult> DeleteGuestCustomer(DateTime? createdFromUtc, DateTime? createdToUtc, bool onlyWithoutShoppingCart)
+        //{
+        //    try
+        //    {
+        //        //_logger.LogInformation($"SaveCustomerPassword : { Newtonsoft.Json.JsonConvert.SerializeObject(custPassword)}");
+        //        await _repository.DeleteGuestCustomer(createdFromUtc, createdToUtc, onlyWithoutShoppingCart);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, ex.Message);
+        //        return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+        //    }
+        //}
     }
 }
