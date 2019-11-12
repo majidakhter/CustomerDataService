@@ -20,7 +20,9 @@ namespace AromaCareGlow.Commerce.CustomerData.Rest
                });
 
             services.AddSingleton<ICustomerRepository, CustomerRepository>();
-           
+            services.AddSingleton<ICustomerPasswordRepository, CustomerPasswordRepository>();
+            services.AddSingleton<ICustomerRoleRepository, CustomerRoleRepository>();
+
         }
         private static Info CreateInfoForApiVersion(ApiVersionDescription description)
         {
